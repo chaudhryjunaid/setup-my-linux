@@ -1,0 +1,7 @@
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+skip_if_unavailable = 1
+keepcache = 0
