@@ -1,0 +1,37 @@
+- name: Ensure man-db and mlocate are installed to update their databases
+  dnf:
+    name: man-db, mlocate
+    state: present
+  register: dnf_mandb_install_result
+  retries: "{{ task_retries }}"
+  delay: "{{ task_delay }}"
+  until: dnf_mandb_install_result is succeeded
+  become: true
+
+- name: Check dconf stat
+  stat: path=/etc/dconf/profile/user
+  register: dconf_dst
+
+- name: Configure dconf user database for legacy overrides
+  copy:
+    src: dconf_user
+    dest: /etc/dconf/profile/user
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  when: not dconf_dst.stat.exists
+  notify:
+    - Reload dconf
+  become: true
+
+- name: Rebuild man cache
+  command: /usr/bin/mandb
+  register: result_mandb
+  changed_when: false
+  become: true
+
+- name: Rebuild locate cache
+  command: /usr/bin/updatedb
+  register: result_updatedb
+  changed_when: false
+  become: true

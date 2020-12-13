@@ -55,12 +55,12 @@
         - base
         - terminal
         - terminals
-    - name: Configure general workstation settings
+    - name: Configure system settings
       import_role:
-        name: workstation
+        name: system
       tags:
         - base
-        - workstation
+        - system
     - name: Configure vim
       import_role:
         name: nodejs
