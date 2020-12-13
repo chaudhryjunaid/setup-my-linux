@@ -43,12 +43,10 @@
     name: {{ dnf_packages }}
     state: latest
 
-- name: Add Visual Studio Code Repo
-  yum_repository:
-    name: vscode
-    description: Visual Studio Code repo
-    baseurl: https://packages.microsoft.com/yumrepos/vscode
 
+- name: Install Google Chrome repo
+  become: yes
+  copy: src=google-chrome.repo dest=/etc/yum.repos.d/
 - name: Import Google Chrome signing key
   become: yes
   rpm_key: key=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
@@ -58,9 +56,15 @@
   dnf:
     name: google-chrome-stable
     state: present
-
+    
 - name: Add Visual Studio Code Repo
   yum_repository:
     name: vscode
     description: Visual Studio Code repo
     baseurl: https://packages.microsoft.com/yumrepos/vscode
+
+- name: Install Visual Studio Code
+  become: yes
+  dnf:
+    name: vscode
+    state: present

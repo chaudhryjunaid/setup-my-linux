@@ -9,4 +9,37 @@
       assert:
         that:
           - '"{{ ansible_distribution }}" == "Fedora"'
-    
+      tags:
+        - always
+    - name: Install dnf packages
+      import_role:
+        name: dnf
+      tags:
+        - base
+        - dnf
+    - name: Setup dotfiles
+      import_role:
+        name: dotfiles
+      tags:
+        - base
+        - dotfiles
+    - name: Configure terminator
+      import_role:
+        name: terminator
+      tags:
+        - base
+        - terminator
+    - name: Configure general workstation settings
+      import_role:
+        name: workstation
+      tags:
+        - base
+        - workstation
+    - name: Configure zsh
+      import_role:
+        name: zsh
+      tags:
+        - base
+        - zsh
+        - shell
+
