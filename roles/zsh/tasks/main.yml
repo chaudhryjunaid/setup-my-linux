@@ -1,7 +1,9 @@
-- name: Ensure zsh is installed
+- name: Ensure zsh and liquidprompt is installed
   become: yes
   dnf:
-    name: zsh
+    name:
+      - zsh
+      - liquidprompt
     state: latest
 
 - name: download oh-my-zsh
