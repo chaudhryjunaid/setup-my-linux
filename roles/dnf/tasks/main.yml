@@ -2,12 +2,10 @@
   dnf:
     name: distribution-gpg-keys
     state: present
-
 - name: Import rpm-gpg key of rpmfusion free repo
   rpm_key:
     state: present
     key: '/usr/share/distribution-gpg-keys/rpmfusion//RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}-primary'
-
 - name: Import rpm-gpg key of rpmfusion nonfree repo
   rpm_key:
     state: present
@@ -20,17 +18,27 @@
   dnf:
     name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
-
 - name: Install rpmfusion nonfree repo
   dnf:
     name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
-
 - name: Install adobe linux repo
   dnf:
     name: http://linuxdownload.adobe.com/adobe-release/adobe-release-{{ ansible_userspace_architecture }}-1.0-1.noarch.rpm
     state: present
-
+- name: Install Google Chrome repo
+  become: yes
+  copy:
+    src: google-chrome.repo
+    dest: /etc/yum.repos.d/
+- name: Import Google Chrome signing key
+  become: yes
+  rpm_key: key=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+- name: Add Visual Studio Code Repo
+  yum_repository:
+    name: vscode
+    description: Visual Studio Code repo
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
 - name: "[Fedora] Update System"
   become_user: root
   dnf:
@@ -40,29 +48,13 @@
 - name: "[Fedora] Install System Packages"
   become_user: root
   dnf:
-    name: {{ dnf_packages }}
+    name: "{{ dnf_packages }}"
     state: latest
-
-
-- name: Install Google Chrome repo
-  become: yes
-  copy: src=google-chrome.repo dest=/etc/yum.repos.d/
-- name: Import Google Chrome signing key
-  become: yes
-  rpm_key: key=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
-
 - name: Install Google Chrome
   become: yes
   dnf:
     name: google-chrome-stable
     state: present
-    
-- name: Add Visual Studio Code Repo
-  yum_repository:
-    name: vscode
-    description: Visual Studio Code repo
-    baseurl: https://packages.microsoft.com/yumrepos/vscode
-
 - name: Install Visual Studio Code
   become: yes
   dnf:

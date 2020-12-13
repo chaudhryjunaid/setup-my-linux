@@ -1,3 +1,32 @@
+- name: Ensure zsh is installed
+  dnf:
+    name: zsh
+    state: latest
+
+- name: download oh-my-zsh
+  git:
+    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+    dest: "{{ansible_user_dir}}/.oh-my-zsh"
+
+- name: download zsh-completions
+  git:
+    repo: "https://github.com/zsh-users/zsh-completions"
+    dest: "{{ansible_user_dir}}/.oh-my-zsh/custom/plugins/zsh-completions/"
+
+- name: download zsh-syntax-highlighting
+  git:
+    repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    dest: "{{ansible_user_dir}}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/"
+
+- name: download zsh-autosuggestions
+  git:
+    repo: "https://github.com/zsh-users/zsh-autosuggestions"
+    dest: "{{ansible_user_dir}}/.oh-my-zsh/custom/plugins/zsh-autosuggestions/"
+- name: install oh-my-zsh
+  copy:
+    src: ".zshrc"
+    dest: "{{ansible_user_dir}}/.zshrc"
+    backup: yes
 - name: Setting zsh as default shell
   become_user: root
   user:

@@ -23,6 +23,31 @@
       tags:
         - base
         - dotfiles
+    - name: Configure zsh
+      import_role:
+        name: zsh
+      tags:
+        - base
+        - zsh
+        - shell
+    - name: Configure ssh
+      import_role:
+        name: ssh
+      tags:
+        - base
+        - ssh
+    - name: Configure folders
+      import_role:
+        name: folders
+      tags:
+        - base
+        - folders
+    - name: Configure vim
+      import_role:
+        name: vim
+      tags:
+        - base
+        - vim
     - name: Configure terminator
       import_role:
         name: terminator
@@ -35,11 +60,10 @@
       tags:
         - base
         - workstation
-    - name: Configure zsh
+    - name: Configure vim
       import_role:
-        name: zsh
+        name: nodejs
       tags:
-        - base
-        - zsh
-        - shell
-
+        - development
+        - nodejs
+    
