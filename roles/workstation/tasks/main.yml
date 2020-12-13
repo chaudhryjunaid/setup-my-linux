@@ -1,4 +1,5 @@
 - name: Set hostname to the model name
+  become: yes
   command: >-
       bash -c "
         MODELNAME=$(dmidecode -s system-version | sed 's/[[:space:]]//g')
