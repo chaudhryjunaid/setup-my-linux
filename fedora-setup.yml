@@ -61,7 +61,7 @@
       tags:
         - base
         - system
-    - name: Configure vim
+    - name: Install nodejs
       import_role:
         name: nodejs
       tags:
