@@ -29,7 +29,7 @@
     dest: "{{ansible_user_dir}}/.zshrc"
     backup: yes
 - name: Setting zsh as default shell
-  become_user: root
+  become: yes
   user:
-    name: "{{user}}"
+    name: "{{ ansible_user_id }}"
     shell: /bin/zsh
