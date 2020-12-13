@@ -1,8 +1,7 @@
 - name: "[Fedora] Install terminator"
-  become_user: root
+  become: yes
   dnf:
-    name:
-      - terminator
+    name: terminator
     state: latest
 - name: Creates terminator config directory
   file:
