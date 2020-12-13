@@ -1,0 +1,5 @@
+# Reload dconf to get terminal config
+- name: Reload dconf
+  command: /usr/bin/dconf update
+  changed_when: false
+  become: true

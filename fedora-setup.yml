@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  vars_prompt:
+    - name: "ansible_become_password"
+      prompt: "Sudo password"
+      private: yes
+  tasks:
+    - name: Check that we run on Fedora
+      assert:
+        that:
+          - '"{{ ansible_distribution }}" == "Fedora"'
+      tags:
+        - always
+    - name: Install dnf packages
+      import_role:
+        name: dnf
+      tags:
+        - base
+        - dnf
+    - name: Setup dotfiles
+      import_role:
+        name: dotfiles
+      tags:
+        - base
+        - dotfiles
+    - name: Configure zsh
+      import_role:
+        name: zsh
+      tags:
+        - base
+        - zsh
+        - shell
+    - name: Configure ssh
+      import_role:
+        name: ssh
+      tags:
+        - base
+        - ssh
+    - name: Configure folders
+      import_role:
+        name: folders
+      tags:
+        - base
+        - folders
+    - name: Configure vim
+      import_role:
+        name: vim
+      tags:
+        - base
+        - vim
+    - name: Configure terminals
+      import_role:
+        name: terminals
+      tags:
+        - base
+        - terminal
+        - terminals
+    - name: Configure system settings
+      import_role:
+        name: system
+      tags:
+        - base
+        - system
+    - name: Configure vim
+      import_role:
+        name: nodejs
+      tags:
+        - development
+        - nodejs
+    
