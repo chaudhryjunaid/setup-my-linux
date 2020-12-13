@@ -1,4 +1,5 @@
 - name: Ensure zsh is installed
+  become: yes
   dnf:
     name: zsh
     state: latest
