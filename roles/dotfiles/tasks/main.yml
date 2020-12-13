@@ -5,7 +5,7 @@
   when: user_git_name is not defined or user_git_name == ""
 
 - set_fact:
-    user_git_name: "{{ prompt.user_input | default(lookup('pipe', 'id -F {{ ansible_user_id }}'), true) | default(ansible_user_id, true) }}"
+    user_git_name: "{{ prompt.user_input | default(lookup('pipe', 'getent passwd | grep \"$USER\" | cut -d\":\" -f5 | cut -d\",\" -f1'), true) | default(ansible_user_id, true) }}"
   when: user_git_name is not defined or user_git_name == ""
 
 - name: get user github email
