@@ -14,12 +14,12 @@ filetype off
 
 function! InstallEditorConfig(info)
   if a:info.status == 'installed' || a:info.force
-    !brew install editorconfig
+    !sudo dnf install editorconfig
   endif
 endfunction
 function! InstallSilverSearcher(info)
   if a:info.status == 'installed' || a:info.force
-    !brew install the_silver_searcher
+    !sudo dnf install the_silver_searcher
   endif
 endfunction
 
