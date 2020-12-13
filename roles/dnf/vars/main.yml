@@ -103,7 +103,6 @@ dnf_packages:
   - gnupg
   - tcpdump
   - screen
-  - kernel-doc
   - dstat
   - python3-speedtest-cli
 
