@@ -2,10 +2,6 @@
   dnf:
     name: man-db, mlocate
     state: present
-  register: dnf_mandb_install_result
-  retries: "{{ task_retries }}"
-  delay: "{{ task_delay }}"
-  until: dnf_mandb_install_result is succeeded
   become: true
 
 - name: Check dconf stat
