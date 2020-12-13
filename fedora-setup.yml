@@ -48,12 +48,13 @@
       tags:
         - base
         - vim
-    - name: Configure terminator
+    - name: Configure terminals
       import_role:
-        name: terminator
+        name: terminals
       tags:
         - base
-        - terminator
+        - terminal
+        - terminals
     - name: Configure general workstation settings
       import_role:
         name: workstation
