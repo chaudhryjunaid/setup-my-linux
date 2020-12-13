@@ -1,4 +1,5 @@
 - name: Ensure vim is installed
+  become: yes
   dnf:
     name: vim
     state: latest
