@@ -50,3 +50,11 @@ Tested on Fedora 33
   ```
 
 * Additionally, you will need to set your terminal font to a powerline font for vim to display special characters nicely.
+
+## Further setup required
+* TODO: If you use docker or podman for running containers on linux, this is not setup using this playbook. This is a deliberate omission to allow you to select your container tools yourself.
+
+* TODO: This playbook does not yet setup Slack and Zoom applications whose setup is left to be manual. 
+
+## Feedback
+* Please create an issue in this repository if you encounter a bug and I will try to fix it or get back to you soon enough.
