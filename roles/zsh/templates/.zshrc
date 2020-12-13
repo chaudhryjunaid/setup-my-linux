@@ -101,8 +101,6 @@ export GPG_TTY=$(tty);
 # 10ms for key sequences
 KEYTIMEOUT=1
 
-unalias mysql
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
