@@ -40,13 +40,20 @@
     dest: /etc/yum.repos.d/
 - name: Import Google Chrome signing key
   become: yes
-  rpm_key: key=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+  rpm_key:
+    key: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state: present
 - name: Add Visual Studio Code Repo
   become: yes
   yum_repository:
     name: vscode
     description: Visual Studio Code repo
     baseurl: https://packages.microsoft.com/yumrepos/vscode
+- name: Import Visual Studio Code signing key
+  become: yes
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
 - name: "[Fedora] Update System"
   become: yes
   dnf:
