@@ -113,6 +113,4 @@ KEYTIMEOUT=1
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
-if [ -f /usr/local/share/liquidprompt ]; then
-  . /usr/local/share/liquidprompt
-fi
+[[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
