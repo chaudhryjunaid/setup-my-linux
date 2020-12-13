@@ -66,5 +66,5 @@
 - name: Install Visual Studio Code
   become: yes
   dnf:
-    name: vscode
+    name: code
     state: present
