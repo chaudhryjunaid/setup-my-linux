@@ -3,31 +3,11 @@
   dnf:
     name: distribution-gpg-keys
     state: present
-- name: Import rpm-gpg key of rpmfusion free repo
-  become: yes
-  rpm_key:
-    state: present
-    key: '/usr/share/distribution-gpg-keys/rpmfusion//RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}-primary'
-- name: Import rpm-gpg key of rpmfusion nonfree repo
-  become: yes
-  rpm_key:
-    state: present
-    key: '/usr/share/distribution-gpg-keys/rpmfusion//RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_major_version }}-primary'
 - name: Import rpm-gpg key of adobe linux repo
   become: yes
   rpm_key:
     state: present
     key: '/usr/share/distribution-gpg-keys/adobe/RPM-GPG-KEY-adobe-linux'
-- name: Install rpmfusion free repo
-  become: yes
-  dnf:
-    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
-    state: present
-- name: Install rpmfusion nonfree repo
-  become: yes
-  dnf:
-    name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
-    state: present
 - name: Install adobe linux repo
   become: yes
   dnf:
@@ -42,6 +22,17 @@
   become: yes
   rpm_key:
     key: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state: present
+- name: Add Sublime Text Code Repo
+  become: yes
+  yum_repository:
+    name: sublime-text
+    description: Sublime Text Repo
+    baseurl: https://download.sublimetext.com/rpm/dev/x86_64/sublime-text.repo
+- name: Import Sublime Text Code signing key
+  become: yes
+  rpm_key:
+    key: https://download.sublimetext.com/sublimehq-rpm-pub.gpg 
     state: present
 - name: Add Visual Studio Code Repo
   become: yes
@@ -74,4 +65,14 @@
   become: yes
   dnf:
     name: code
+    state: present
+- name: Install Sublime Text
+  become: yes
+  dnf:
+    name: sublime-text
+    state: present
+- name: Install Sublime Merge
+  become: yes
+  dnf:
+    name: sublime-merge
     state: present

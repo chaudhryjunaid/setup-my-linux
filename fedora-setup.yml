@@ -1,9 +1,5 @@
 ---
 - hosts: localhost
-  vars_prompt:
-    - name: "ansible_become_password"
-      prompt: "Sudo password"
-      private: yes
   tasks:
     - name: Check that we run on Fedora
       assert:
