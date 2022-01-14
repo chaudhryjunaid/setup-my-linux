@@ -9,23 +9,27 @@
     path: "{{ ansible_user_dir }}/.ssh/id_rsa"
   register: keyfile
 
+- name: check if id_ed25519 exists
+  stat:
+    path: "{{ ansible_user_dir }}/.ssh/id_ed25519"
+  register: keyfile2
+
 - name: get user github email
   pause:
     prompt: "Please enter your github email address"
   register: prompt
-  when: not keyfile.stat.exists and (user_github_email is not defined or user_github_email == "")
+  when: not keyfile.stat.exists and not keyfile2.stat.exists and (user_github_email is not defined or user_github_email == "")
 
 - set_fact:
     user_github_email: "{{ prompt.user_input | default(default_user_github_email, true) }}"
-  when: not keyfile.stat.exists and (user_github_email is not defined or user_github_email == "")
-    
+  when: not keyfile.stat.exists and not keyfile2.stat.exists and (user_github_email is not defined or user_github_email == "")
 
 - name: generate ssh key pair.
-  command: ssh-keygen -t rsa -b 4096 -C "{{ user_github_email }}" -N "" -f "{{ ansible_user_dir }}/.ssh/id_rsa"
+  command: ssh-keygen -t ed25519 -C "{{ user_github_email }}" -N "" -f "{{ ansible_user_dir }}/.ssh/id_ed25519"
   args:
-    creates: "{{ ansible_user_dir }}/.ssh/id_rsa"
-  when: not keyfile.stat.exists
-
+    creates: "{{ ansible_user_dir }}/.ssh/id_ed25519"
+  when: not keyfile.stat.exists and not keyfile2.stat.exists
+  
 - name: generate ssh config file
   template:
     src:  "./templates/ssh_config.j2"
