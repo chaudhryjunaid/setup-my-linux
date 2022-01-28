@@ -26,6 +26,12 @@
         - base
         - zsh
         - shell
+    - name: Configure terminal emulator
+      import_role:
+        name: terminal
+      tags:
+        - base
+        - terminal
     - name: Configure ssh
       import_role:
         name: ssh

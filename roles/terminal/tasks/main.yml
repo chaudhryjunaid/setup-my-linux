@@ -10,7 +10,7 @@
   file:
     path: "{{ ansible_user_dir }}/.config/kitty"
     state: directory
-- name: copy terminator config
+- name: copy kitty config
   copy: 
     src: kitty.conf
     dest: "{{ ansible_user_dir }}/.config/kitty/kitty.conf"
