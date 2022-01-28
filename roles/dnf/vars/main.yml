@@ -99,3 +99,4 @@ dnf_packages:
   - kitty
   - kitty-doc
   - kitty-terminfo
+  - git-delta
