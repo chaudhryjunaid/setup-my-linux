@@ -68,36 +68,6 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-let g:ycm_auto_trigger = 0
-
-" NERDCommenter options
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" " Align line-wise comment delimiters flush left instead of following code
-" indentation
-" let g:NERDDefaultAlign = 'left'
-
-" " Set a language to use its alternate delimiters by default
-" let g:NERDAltDelims_java = 1
-
-" " Add your own custom formats or override the defaults
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" " Allow commenting and inverting empty lines (useful when commenting a
-" region)
-let g:NERDCommentEmptyLines = 1
-
-" " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 " editor config plugin settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
@@ -131,7 +101,7 @@ set timeoutlen=1000 ttimeoutlen=0
 set modelines=0
 
 " Show line numbers
-set number
+set relativenumber
 
 " Show file stats
 set ruler
@@ -145,10 +115,10 @@ set cpoptions+=$
 set wrap
 set textwidth=79
 set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+"set tabstop=2
+"set shiftwidth=2
+"set softtabstop=2
+"set expandtab
 set noshiftround
 
 " Cursor motion
@@ -195,10 +165,10 @@ set nobackup
 set noswapfile
 
 "set autoread
-"au FocusGained,CursorHold,CursorHoldI * checktime
+au FocusGained,CursorHold,CursorHoldI * checktime
 
 " Use the OS clipboard
-"set clipboard=unnamed
+set clipboard=unnamed
 
 " Show matching brackets/parenthesis
 set showmatch
