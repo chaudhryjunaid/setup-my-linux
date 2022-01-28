@@ -100,3 +100,10 @@ dnf_packages:
   - kitty-doc
   - kitty-terminfo
   - git-delta
+  - bat
+  - exa
+  - lsd
+  - the_silver_searcher
+  - procs
+  - fzf
+  - httpie
