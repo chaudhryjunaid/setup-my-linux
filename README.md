@@ -28,7 +28,7 @@ Tested on Fedora 33
 * If you already have a setup and want to execute/reset only part of the configuration done by this repo, please use the `--tags` or `--skip-tags` options:
   ```
       cd setup-fedora-workstation
-      time ansible-playbook fedora-setup.yml --verbose --tags "zsh,terminal,system"
+      time ansible-playbook fedora-setup.yml --verbose --tags "zsh,system"
   ```
 * Following tags are supported:
   * dnf
@@ -36,7 +36,6 @@ Tested on Fedora 33
   * dotfiles
   * vim
   * system
-  * terminal
   * folders
   * ssh
   * nodejs
@@ -47,6 +46,11 @@ Tested on Fedora 33
   ```
   vim +PlugInstall +qall
   vim '+PlugClean!' +qall
+  ```
+
+* If you use nvim, please execute the following to install completion servers:
+  ```
+  nvim +'CocInstall' +qall
   ```
 
 * Additionally, you will need to set your terminal font to a powerline font for vim to display special characters nicely.
