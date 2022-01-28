@@ -44,13 +44,6 @@
       tags:
         - base
         - vim
-    - name: Configure terminals
-      import_role:
-        name: terminals
-      tags:
-        - base
-        - terminal
-        - terminals
     - name: Configure system settings
       import_role:
         name: system
@@ -63,4 +56,3 @@
       tags:
         - development
         - nodejs
-    
