@@ -4,6 +4,12 @@
     name: vim
     state: latest
 
+- name: Ensure neovim is installed
+  become: yes
+  dnf:
+    name: neovim
+    state: latest
+
 - name: create required .vim and vim-plug directories
   file:
     path: "{{ item }}"
@@ -24,6 +30,13 @@
   template:
     src: vimrc.j2
     dest: "{{ ansible_user_dir }}/.vimrc"
+    mode: '0640'
+    backup: yes
+
+- name: copy neovim config
+  template:
+    src: init.vim.j2
+    dest: "{{ ansible_user_dir }}/.config/nvim/init.vim"
     mode: '0640'
     backup: yes
 
