@@ -19,6 +19,7 @@
     - "{{ ansible_user_dir }}/.vim"
     - "{{ ansible_user_dir }}/.vim/autoload"
     - "{{ ansible_user_dir }}/.vim/plugged"
+    - "{{ ansible_user_dir }}/.config/nvim"
 
 - name: install vim-plug vim plugin manager
   get_url:
