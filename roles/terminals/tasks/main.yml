@@ -1,17 +1,18 @@
-- name: "[Fedora] Install terminator and tilix"
+- name: "[Fedora] Install Kitty"
   become: yes
   dnf:
     name:
-      - terminator
-      - tilix
+      - kitty
+      - kitty-doc
+      - kitty-terminfo
     state: latest
-- name: Creates terminator config directory
+- name: Creates kitty config directory
   file:
-    path: "{{ ansible_user_dir }}/.config/terminator"
+    path: "{{ ansible_user_dir }}/.config/kitty"
     state: directory
 - name: copy terminator config
   copy: 
-    src: terminator_config
-    dest: "{{ ansible_user_dir }}/.config/terminator/config"
+    src: kitty.conf
+    dest: "{{ ansible_user_dir }}/.config/kitty/kitty.conf"
     owner: "{{ ansible_user_id }}"
     mode: 0664
