@@ -83,8 +83,10 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
+  export VISUAL='vim'
 else
   export EDITOR='nvim'
+  export VISUAL='nvim'
 fi
 
 # Prefer US English and use UTF-8.
