@@ -25,13 +25,12 @@ dnf_packages:
   - ripgrep
   - meld
   - cppcheck
-  - emacs
   - gdb
   - chromium
   - ruby
   - gvim
   - vim-enhanced
-  - vim-X11
+  - neovim
   - kdiff3
   - sqlite
   - sqlitebrowser
@@ -46,7 +45,6 @@ dnf_packages:
   - weechat
   - mutt
   - git
-  - vim-enhanced
   - aspell
   - aspell-en
   - jq
@@ -62,13 +60,6 @@ dnf_packages:
   - strace
   - bcc
   - bcc-tools
-  - ruby
-  - gcc
-  - gcc-c++
-  - automake
-  - autoconf
-  - make
-  - cmake
   - libtool
   - setools-console
   - policycoreutils-python-utils
@@ -105,4 +96,6 @@ dnf_packages:
   - screen
   - dstat
   - python3-speedtest-cli
-
+  - kitty
+  - kitty-doc
+  - kitty-terminfo
