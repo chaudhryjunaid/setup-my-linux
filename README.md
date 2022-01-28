@@ -49,9 +49,15 @@ Tested on Fedora 35
   vim '+PlugClean!' +qall
   ```
 
-* If you use nvim, please execute the following to install completion servers:
+* If you use nvim, please execute the following to install specified plugins:
   ```
-  nvim +'CocInstall' +qall
+  nvim +PlugInstall +qall
+  nvim '+PlugClean!' +qall
+  ```
+
+* On first run of nvim, please execute the following command:
+  ```
+  :CocInstall
   ```
 
 * Additionally, you will need to set your terminal font to a powerline font for vim to display special characters nicely.
