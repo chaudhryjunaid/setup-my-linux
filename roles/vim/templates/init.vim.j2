@@ -1,0 +1,183 @@
+set nocompatible " disable compatibility to old-time vi
+set showmatch " show matching 
+set ignorecase " case insensitive 
+set mouse=v " middle-click paste with 
+set hlsearch " highlight search 
+set incsearch " incremental search
+set smartcase
+set autoindent " indent a new line the same amount as the line just typed
+set relativenumber " add line numbers
+set wildmode=longest,list " get bash-like tab completions
+set cc=80 " set an 80 column border for good coding style
+set mouse=a " enable mouse click
+set clipboard=unnamedplus " using system clipboard
+set cursorline " highlight current cursorline
+set ttyfast " Speed up scrolling in Vim
+" set spell " enable spell check (may need to download language package)
+" set backupdir=~/.cache/vim " Directory to store backup files.
+
+" Baseline
+set encoding=utf-8
+scriptencoding utf-8
+
+"set term=xterm-256color
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+function! InstallEditorConfig(info)
+  if a:info.status == 'installed' || a:info.force
+    !sudo dnf install editorconfig
+  endif
+endfunction
+
+function! InstallSilverSearcher(info)
+  if a:info.status == 'installed' || a:info.force
+    !sudo dnf install the_silver_searcher
+  endif
+endfunction
+
+
+call plug#begin("~/.vim/plugged")
+ " Plugin Section
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim', { 'do': function('InstallSilverSearcher') }
+Plug 'vim-airline/vim-airline'
+Plug 'flazz/vim-colorschemes'
+Plug 'elzr/vim-json'
+Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim', { 'do': function('InstallEditorConfig') }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+
+" Turn on syntax highlighting
+filetype plugin indent on
+syntax on
+
+set t_Co=256   " This is may or may not needed.
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" color schemes
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+syntax enable
+colorscheme lucius
+
+" open new split panes to right and below
+set splitright
+set splitbelow
+
+" editor config plugin settings
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+  cnoreabbrev ag Ack
+  cnoreabbrev aG Ack
+  cnoreabbrev Ag Ack
+  cnoreabbrev AG Ack
+endif
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn|optimized|compiled|node_modules|bower_components)$'
+let g:ctrlp_max_depth = 40
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g "" | grep -v "`cat ~/.ctrlpignore`"'
+endif
+
+set timeoutlen=1000 ttimeoutlen=0
+
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+
+set cpoptions+=$
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" autosave files when vim loses focus
+au FocusLost,WinLeave * :wa
+au FocusGained,BufEnter * :silent! !
+
+" Disable backup and swap files
+set nobackup
+set noswapfile
+
+"set autoread
+au FocusGained,CursorHold,CursorHoldI * checktime
+
+" Show matching brackets/parenthesis
+set showmatch
+
+" Don't blink when matching
+set matchtime=0
+
+" Folding
+"set foldmethod=syntax
+"set foldnestmax=10
+"set nofoldenable
+"set foldlevel=1
+
+" Make macros render faster (lazy draw)
+set lazyredraw
+
+" autoindent
+set autoindent
+
+"set shortmess+=I
+
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
+set lcs+=space:·
+
+" Uncomment this to enable by default:
+set list " To enable by default
+" Or use your leader key + l to toggle on/off
+map <leader>l :set list!<CR> " Toggle tabs and EOL
+
+syntax enable
+
+" move line or visually selected block - alt+j/k
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" open file in a text by placing text and gf
+nnoremap gf :vert winc f<cr>
+" copies filepath to clipboard by pressing yf
+:nnoremap <silent> yf :let @+=expand('%:p')<CR>
+" copies pwd to clipboard: command yd
+:nnoremap <silent> yd :let @+=expand('%:p:h')<CR>
+
+let g:coc_global_extensions = [
+  \ 'coc-pairs',
+  \ 'coc-snippets',
+  \ 'coc-html',
+  \ 'coc-tsserver',
+  \ 'coc-css',
+  \ 'coc-clangd',
+  \ 'coc-json',
+  \ 'coc-pyright',
+  \ 'coc-sh',
+  \ 'coc-flutter',
+  \ ]
