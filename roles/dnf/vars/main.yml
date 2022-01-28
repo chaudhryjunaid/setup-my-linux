@@ -107,3 +107,8 @@ dnf_packages:
   - procs
   - fzf
   - httpie
+  - zoxide
+  - glances
+  - hyperfine
+  - tldr
+
