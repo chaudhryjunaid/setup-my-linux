@@ -47,6 +47,7 @@ Plug 'mileszs/ack.vim', { 'do': function('InstallSilverSearcher') }
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'elzr/vim-json'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim', { 'do': function('InstallEditorConfig') }
@@ -57,6 +58,24 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
+" color schemes
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+syntax enable
+
+set background=dark
+
+colorscheme PaperColor
+"colorscheme lucius
+"let g:airline_theme='lucius'
+"colorscheme OceanicNext
+"let g:airline_theme='oceanicnext'
+"let g:enable_bold_font = 1
+"colorscheme hybrid_material
+"let g:airline_theme = 'hybrid'
+
 set t_Co=256   " This is may or may not needed.
 
 " air-line
@@ -65,14 +84,6 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-" color schemes
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-syntax enable
-colorscheme lucius
 
 " open new split panes to right and below
 set splitright
@@ -103,9 +114,19 @@ set timeoutlen=1000 ttimeoutlen=0
 set ruler
 
 " Blink cursor on error instead of beeping (grr)
-set visualbell
+"set visualbell
 
 set cpoptions+=$
+
+"Whitespace
+set wrap
+set textwidth=79
+set formatoptions=tcqrn1
+"set tabstop=2
+"set shiftwidth=2
+"set softtabstop=2
+"set expandtab
+set noshiftround
 
 " Status bar
 set laststatus=2
