@@ -6,6 +6,16 @@
       - kitty-doc
       - kitty-terminfo
     state: latest
+  when: ansible_distribution == "Fedora"
+- name: "[Ubuntu] Install Kitty"
+  become: yes
+  apt:
+    name:
+      - kitty
+      - kitty-doc
+      - kitty-terminfo
+    state: latest
+  when: ansible_distribution == "Ubuntu"
 - name: Creates kitty config directory
   file:
     path: "{{ ansible_user_dir }}/.config/kitty"

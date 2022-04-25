@@ -1,9 +1,9 @@
 - name: Ensure zsh is installed
-  become: yes
-  dnf:
-    name: zsh
-    state: latest
-
+  become: true
+  become_user: root
+  action: >
+    {{ ansible_pkg_mgr }} name=zsh state=present update_cache=yes
+      
 - name: download oh-my-zsh
   git:
     repo: "https://github.com/ohmyzsh/ohmyzsh.git"
