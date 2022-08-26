@@ -1,5 +1,5 @@
 # setup-fedora-workstation
-An ansible playbook for setting up a development environment on Fedora Workstation
+An ansible playbook for setting up a development environment on Fedora Workstation or Ubuntu.
 
 ## Requirements
 Tested on Fedora 35
@@ -8,6 +8,8 @@ Tested on Fedora 35
 * Install ansible:
   ```
   sudo dnf install ansible
+  OR
+  sudo apt install ansible
   ```
 
 * Clone this repo:
@@ -21,7 +23,9 @@ Tested on Fedora 35
 * For a fresh machine, run the complete playbook:
   ```
       cd setup-fedora-workstation
-      time ansible-playbook fedora-setup.yml -K -v
+      time ansible-playbook fedora-setup.yml -K -v # for fedora
+      # OR
+      time ansible-playbook ubuntu-setup.yml -K -v # for ubuntu
   ```
   The playbook will ask for sudo password and prompt for other information as well in some roles. Please keep an eye on the progress to see if any input is required.
   The -K flag is required so that the playbook asks for sudo password which is required for many tasks.
@@ -29,10 +33,11 @@ Tested on Fedora 35
 * If you already have a setup and want to execute/reset only part of the configuration done by this repo, please use the `--tags` or `--skip-tags` options:
   ```
       cd setup-fedora-workstation
-      time ansible-playbook fedora-setup.yml -K --verbose --tags "zsh,system"
+      time ansible-playbook fedora-setup.yml -K --verbose --tags "zsh,system" # for fedora
+      time ansible-playbook ubuntu-setup.yml -K --verbose --tags "zsh,system" # for ubuntu
   ```
 * Following tags are supported:
-  * dnf
+  * dnf/apt
   * zsh
   * dotfiles
   * vim
