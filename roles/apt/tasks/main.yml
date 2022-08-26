@@ -1,0 +1,5 @@
+- name: "[Ubuntu] Install packages"
+  become: yes
+  apt:
+    name: "{{ apt_packages }}"
+    state: latest

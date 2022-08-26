@@ -42,3 +42,4 @@
   shell: ssh-add -l | grep -q `ssh-keygen -lf "{{ ansible_user_dir }}/.ssh/id_rsa"  | awk '{print $2}'` || ssh-add -K "{{ ansible_user_dir }}/.ssh/id_rsa"
   register: command_result
   changed_when: "'Identity added' in command_result.stderr"
+  when: ansible_distribution == "Fedora"
