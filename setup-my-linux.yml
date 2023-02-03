@@ -1,0 +1,42 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install dnf packages if we are on Fedora
+      import_role:
+        name: dnf
+      when: ansible_distribution == "Fedora"
+      tags:
+        - apps
+    - name: Install apt packages if we are on Ubuntu
+      import_role:
+        name: apt
+      when: ansible_distribution == "Ubuntu"
+      tags:
+        - apps
+    - name: Setup dotfiles
+      import_role:
+        name: dotfiles
+      tags:
+        - dotfiles
+    - name: Configure zsh
+      import_role:
+        name: zsh
+      tags:
+        - zsh
+    - name: Configure vim
+      import_role:
+        name: vim
+      tags:
+        - vim
+    - name: Configure system settings
+      import_role:
+        name: system
+      when: ansible_distribution == "Fedora"
+      tags:
+        - settings
+    - name: Install nodejs
+      import_role:
+        name: nodejs
+      tags:
+        - nodejs
+

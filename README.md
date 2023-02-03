@@ -1,8 +1,10 @@
 # setup-fedora-workstation
-An ansible playbook for setting up a development environment on Fedora Workstation or Ubuntu.
+An collection of ansible playbooks for setting up your favorite linux distribution.
 
 ## Requirements
-Tested on Fedora 35
+- ansible
+- ssh key setup with github
+
 
 ## Setting up pre-requisites
 * Install ansible:
@@ -11,6 +13,8 @@ Tested on Fedora 35
   OR
   sudo apt install ansible
   ```
+
+* Create an ssh keypair if you don't have one already and ensure that the public key is uploaded to github
 
 * Clone this repo:
   ```
@@ -22,48 +26,35 @@ Tested on Fedora 35
 
 * For a fresh machine, run the complete playbook:
   ```
-      cd setup-fedora-workstation
-      time ansible-playbook fedora-setup.yml -K -v # for fedora
-      # OR
-      time ansible-playbook ubuntu-setup.yml -K -v # for ubuntu
+      cd setup-my-linux
+      time ansible-playbook setup-my-linux.yml -K -v
   ```
   The playbook will ask for sudo password and prompt for other information as well in some roles. Please keep an eye on the progress to see if any input is required.
   The -K flag is required so that the playbook asks for sudo password which is required for many tasks.
 
 * If you already have a setup and want to execute/reset only part of the configuration done by this repo, please use the `--tags` or `--skip-tags` options:
   ```
-      cd setup-fedora-workstation
-      time ansible-playbook fedora-setup.yml -K --verbose --tags "zsh,system" # for fedora
-      time ansible-playbook ubuntu-setup.yml -K --verbose --tags "zsh,system" # for ubuntu
+      cd setup-my-linux
+      time ansible-playbook setup-my-linux.yml -K --verbose --tags "zsh,settings"
   ```
+
 * Following tags are supported:
-  * dnf/apt
+  * apps
   * zsh
   * dotfiles
   * vim
-  * system
-  * folders
-  * ssh
+  * settings
   * nodejs
 
 ## Additional manual configuration required
-
-* If you use vim, you will need to execute the following commands at the command-line:
-  ```
-  vim +PlugInstall +qall
-  vim '+PlugClean!' +qall
-  ```
 
 * If you use nvim, please execute the following to install specified plugins:
   ```
   nvim +PlugInstall +qall
   nvim '+PlugClean!' +qall
   ```
+  Please note that neovim is the preferred editor in the installed setup.
 
-* On first run of nvim, please execute the following command:
-  ```
-  :CocInstall
-  ```
 
 * Additionally, you will need to set your terminal font to a powerline font for vim to display special characters nicely.
 

@@ -42,7 +42,6 @@ apt_packages:
   - powertop
   - iotop
   - procps
-  - crypto-policies
   - vinagre
   - htop
   - mosh
@@ -63,7 +62,6 @@ apt_packages:
   - exa
   - silversearcher-ag
   - fzf
-  - zoxide
   - glances
   - hyperfine
   - tldr

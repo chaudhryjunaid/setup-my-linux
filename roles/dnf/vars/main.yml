@@ -28,8 +28,6 @@ dnf_packages:
   - gdb
   - chromium
   - ruby
-  - gvim
-  - vim-enhanced
   - neovim
   - kdiff3
   - sqlite
@@ -106,8 +104,6 @@ dnf_packages:
   - the_silver_searcher
   - procs
   - fzf
-  - httpie
-  - zoxide
   - glances
   - hyperfine
   - tldr
