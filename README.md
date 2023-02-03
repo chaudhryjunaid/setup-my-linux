@@ -19,7 +19,7 @@ An collection of ansible playbooks for setting up your favorite linux distributi
 * Clone this repo:
   ```
   cd ~
-  git clone https://github.com/chaudhryjunaid/setup-fedora-workstation.git
+  git clone git@github.com:chaudhryjunaid/setup-my-linux.git
   ```
 
 ## Running the playbook
