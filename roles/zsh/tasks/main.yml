@@ -29,7 +29,7 @@
     dest: "{{ansible_user_dir}}/.liquidprompt"
 - name: install oh-my-zsh
   template:
-    src: ".zshrc"
+    src: "zshrc"
     dest: "{{ansible_user_dir}}/.zshrc"
     backup: yes
 - name: Setting zsh as default shell for root
