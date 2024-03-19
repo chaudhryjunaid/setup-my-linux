@@ -1,5 +1,10 @@
-# setup-fedora-workstation
-An collection of ansible playbooks for setting up your favorite linux distribution.
+# setup-my-linux
+An collection of ansible playbooks for setting up your favorite linux distribution. Use this as a starting point for your own config, or replicate my setup as-is if you like.
+
+## Disclaimer
+This repo has not been updated in a while and developer setups for some of the tools like neovim have changed significantly. But you can fork this repo and use it as a starting point.
+
+I do not have enough available time to update the setup in this repo currently.
 
 ## Requirements
 - ansible
